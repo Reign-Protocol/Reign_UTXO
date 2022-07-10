@@ -16,19 +16,11 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 rustup update stable
 ```
 
-### 2. Clone this workshop
-
-Clone your copy of the workshop codebase
-
-```bash
-git clone https://github.com/substrate-developer-hub/utxo-workshop.git
-```
 
 ## UI
 
-In this UI demo, you will interact with the UTXO blockchain via the [Polkadot UI](https://polkadot.js.org/apps/).
 
-The following example takes you through a scenario where:
+The following takes you through a scenario where:
 - Alice already owns a UTXO of value 100 upon genesis
 - Alice sends Bob a UTXO with value 50, tipping the remainder to validators
 
@@ -89,5 +81,5 @@ cargo build --release
 
     Send as an `unsigned` transaction. With UTXO blockchains, the proof is already in the `sigscript` input.
 
-8. **Verify that your transaction succeeded**. In `Chain State`, look up the newly created UTXO hash: `0xdbc75ab8ee9b83dcbcea4695f9c42754d94e92c3c397d63b1bc627c2a2ef94e6` to verify that a new UTXO of 50, belonging to Bob, now exists! Also you can verify that Alice's original UTXO has been spent and no longer exists in UtxoStore.
+8. **Verify that your transaction succeeded**. In `Chain State`, look up the newly created UTXO hash: `0xdbc75ab8ee9b83dcbcea4695f9c42754d94e92c3c397d63b1bc627c2a2ef94e6` to verify that a new UTXO of 50, belonging to Bob, now exists! Also you can verify that Alice's original UTXO has been spent and no longer exists in the store.
 
