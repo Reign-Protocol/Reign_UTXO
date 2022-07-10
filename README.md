@@ -1,6 +1,6 @@
 # REIGN UTXO 
 
-UTXO Model for sending and receiving the tokens
+Unspent Transaction Outputs Model on Substrate for sending and receiving Reign tokens.
 
 ## Installation
 
