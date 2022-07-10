@@ -1,22 +1,6 @@
-# UTXO on Substrate
+# REIGN UTXO 
 
-### _Note: this workshop is presently not actively maintained and is using older versions of all dependancies than presently used in substrate._
-
-A UTXO chain implementation on Substrate, with two self-guided workshops. Original [UXTO inspiration](https://github.com/0x7CFE/substrate-node-template/tree/utxo) by [Dmitriy Kashitsyn](https://github.com/0x7CFE).
-
-Substrate Version: `2.0.0-rc6`. For educational purposes only.
-
-## Table of Contents
-- [Installation](#Installation): Setting up Rust & Substrate dependencies
-
-- [UI Demo](#UI-Demo): Demo of UTXO implementation in a simple UI
-
-- [Beginner Workshop](#Beginner-Workshop): A self guided, 1 hour workshop that familiarizes you with Substrate.
-
-- [Advanced Workshop](#Advanced-Workshop): A self guided, 2 hour video tutorial, that teaches you how to build a UTXO blockchain from scratch.
-
-- [Helpful Resources](#Helpful-Resources): Additional supporting documentation and references for troubleshooting.
-
+UTXO Model for sending and receiving the tokens
 
 ## Installation
 
@@ -40,7 +24,7 @@ Clone your copy of the workshop codebase
 git clone https://github.com/substrate-developer-hub/utxo-workshop.git
 ```
 
-## UI Demo
+## UI
 
 In this UI demo, you will interact with the UTXO blockchain via the [Polkadot UI](https://polkadot.js.org/apps/).
 
@@ -107,92 +91,3 @@ cargo build --release
 
 8. **Verify that your transaction succeeded**. In `Chain State`, look up the newly created UTXO hash: `0xdbc75ab8ee9b83dcbcea4695f9c42754d94e92c3c397d63b1bc627c2a2ef94e6` to verify that a new UTXO of 50, belonging to Bob, now exists! Also you can verify that Alice's original UTXO has been spent and no longer exists in UtxoStore.
 
-*Coming soon: A video walkthrough of the above demo.*
-
-## Beginner Workshop
-**Estimated time**: 2 hours
-
-In this workshop you will:
-- Get familiar with basic Rust and Substrate functionality
-- Prevent malicious users from sending bad UTXO transactions
-
-Your challenge is to fix the code such that:
-1. The Rust compiler compiles without any errors
-2. All tests in `utxo.rs` pass, ensuring secure transactions
-
-### Directions
-1. Checkout the `workshop` branch. The `Master` branch has the solutions, so don't peek!
-
-```zsh
-git fetch origin workshop:workshop
-git checkout workshop
-```
-
-2. Cd into the base directory. Run the test using: `cargo test -p utxo-runtime`.
-
-```zsh
-compiling utxo-runtime v2.0.0 (/Users/nicole/Desktop/utxo-workshop/runtime)
-error[E0433]: failed to resolve: use of undeclared type or module `H512`
-   --> /Users/nicole/Desktop/utxo-workshop/runtime/src/utxo.rs:236:31
-    |
-236 |             input.sigscript = H512::zero();
-    |                               ^^^^ use of undeclared type or module `H512`
-
-...
-```
-
-3. Your first task: fix all the compiler errors! Hint: Look for the `TODO` comments in `utxo.rs` to see where to fix errors.
-
-4. Once your code compiles, it's now time to fix the `8` failing tests!
-
-```zsh
-failures:
-    utxo::tests::attack_by_double_counting_input
-    utxo::tests::attack_by_double_generating_output
-    utxo::tests::attack_by_over_spending
-    utxo::tests::attack_by_overflowing_value
-    utxo::tests::attack_by_permanently_sinking_outputs
-    utxo::tests::attack_with_empty_transactions
-    utxo::tests::attack_with_invalid_signature
-    utxo::tests::test_simple_transaction
-```
-
-5. In `utxo.rs`, edit the logic in `validate_transaction()` function to make all tests pass.
-
-```zsh
-running 8 tests
-test utxo::tests::attack_by_overflowing_value ... ok
-test utxo::tests::attack_by_double_counting_input ... ok
-test utxo::tests::attack_by_double_generating_output ... ok
-test utxo::tests::attack_by_over_spending ... ok
-test utxo::tests::attack_with_empty_transactions ... ok
-test utxo::tests::attack_with_invalid_signature ... ok
-test utxo::tests::attack_by_permanently_sinking_outputs ... ok
-test utxo::tests::test_simple_transaction ... ok
-```
-
-## Advanced Workshop
-**VIDEO TUTORIALS COMING SOON**
-
-**Estimated time**: 2 hours
-
-In this workshop, you will implement this UTXO project from scratch using Substrate.
-
-You will learn:
-- How to implement the UTXO ledger model on Substrate
-- How to secure UTXO transactions against attacks
-- How to seed genesis block with UTXOs
-- How to reward block validators in this environment
-- How to customize transaction pool logic on Substrate
-- Good coding patterns for working with Substrate & Rust, including testing and refactoring
-
-Checkout the `startercode` branch to get the boilerplate for this workshop.
-```zsh
-git fetch origin startercode:startercode
-git checkout startercode
-```
-
-## Helpful Resources
-- [Substrate documentation](http://crates.parity.io)
-- [bytes to Vec<u8> converter](https://cryptii.com/pipes/integer-encoder)
-- [Polkadot UI](https://polkadot.js.org/)
